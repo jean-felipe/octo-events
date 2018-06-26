@@ -11,4 +11,6 @@
 #
 
 class Event < ApplicationRecord
+  belongs_to :issue
+  has_one :comment
 end

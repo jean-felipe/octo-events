@@ -8,7 +8,9 @@ class EventsController < ApplicationController
     
     if !@comment_params.nil?
       @comment = Comment.find_by(uuid: @comment_params[:uuid])
-      @comment = Comments::Create.process(@comment_params.except(:user)) if @comment.nil?
+      if @comment.nil?
+        @comment = Comments::Create.process(@comment_params.except(:user))
+      end
     end
 
     label_params.each do |label|
